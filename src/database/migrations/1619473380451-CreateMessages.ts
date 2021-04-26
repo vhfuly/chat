@@ -10,14 +10,15 @@ export class CreateMessages1619473380451 implements MigrationInterface {
                     {
                         name: "id",
                         type: "uuid",
-                        isPrimary: true
+                        isPrimary: true,
                     },
                     {
                         name: "admin_id",
                         type: "uuid",
+                        isNullable: true,
                     },
                     {
-                        name: "admin_id",
+                        name: "user_id",
                         type: "uuid",
                     },
                     {
@@ -29,6 +30,16 @@ export class CreateMessages1619473380451 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()',
                     },
+                ],
+                foreignKeys: [
+                    {
+                        name: 'FKUser',
+                        referencedTableName: 'users',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['user_id'],
+                        onDelete: 'SET NULL',
+                        onUpdate: 'SET NULL',
+                    }
                 ]
             })
         )
